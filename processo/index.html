@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<script>
+
+  //coloque aqui o endereco de seu repositorio e api no github
+  // este endereco deve terminar e comecar com  "/"
+  var repositorio_nome = "/guilhermemiua/trabalho-gerencia-configuracao/"; //modifique somente esta linha
+
+  //var repositorio_api="https://api.github.com/repos/alerario/teste/"; 
+  //var repositorio = "https://raw.githubusercontent.com/alerario/teste/master/"; 
+  var repositorio_api = "https://api.github.com/repos" + repositorio_nome;
+  var repositorio = "https://raw.githubusercontent.com" + repositorio_nome + "master/";
+
+  function zoomin() {
+    var myImg = document.getElementById("sky");
+    var currWidth = myImg.clientWidth;
+    myImg.style.width = (currWidth + 100) + "px";
+  }
+
+  function zoomout() {
+    var myImg = document.getElementById("sky");
+    var currWidth = myImg.clientWidth;
+    myImg.style.width = (currWidth - 100) + "px";
+  }
+
+  function nozoom() {
+    var myImg = document.getElementById("sky");
+    var currWidth = myImg.clientWidth;
+    myImg.style.width = "500px";
+  }
+
+
+  function lerGitHubTag(elementID, elementID2) {
+    var requestURL = repositorio_api.concat("tags");
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+      var MyJson = request.response;
+      document.getElementById(elementID).innerHTML = "Tag:" + MyJson[0].name;
+      document.getElementById(elementID2).innerHTML = MyJson[0].commit.sha;
+    }
+  }
+
+  function lerGitHubCommit(elementID, tamanho) {
+    var requestURL = repositorio_api.concat("commits");
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+      var MyJson = request.response;
+      if (tamanho > 0) {
+        document.getElementById(elementID).innerHTML = "  (" + MyJson[0].sha.substring(0, tamanho) + ")";
+      } else {
+        document.getElementById(elementID).innerHTML = MyJson[0].sha;
+      }
+    }
+  }
+
+
+
+</script>
+
+
+
+
+<style type="text/css">
+  table {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+
+  table td,
+  table th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+
+  table tbody td {
+    font-size: 13px;
+  }
+
+  table tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+
+  table thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+
+  table thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+
+  table thead th:first-child {
+    border-left: none;
+  }
+
+  table tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+  }
+
+  table tfoot td {
+    font-size: 14px;
+  }
+
+  table tfoot .links {
+    text-align: right;
+  }
+
+  table tfoot .links a {
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  a {
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+  }
+
+  .collapsible {
+    text-decoration: none;
+    background-color: #6699ff;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+    font-style: bold;
+    color: #FFFFFF;
+  }
+
+  .content {
+    text-decoration: none;
+    background-color: #ccddff;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+    font-style: italic;
+    display: none;
+  }
+</style>
+
+
+<body>
+  <h1> Especificação de processo de Software </h1>
+  <br><br>
+
+  <div class="collapsible"> Teste
+
+    <div style="float:right;" id=ultimocommit></div>
+    <div style="float:right;" id=ultimatag></div>
+  </div>
+
+
+  <div class="content">
+    <p>
+      <div id="descricao"></div>
+    </p>
+    <hr>
+    Criado pelo site: <a href="https://alerario.netlify.com/processo/"> https://alerario.netlify.com/processo/ </a>
+    <p>
+      <div>
+        <div style="float:left;">Grupo:</div>
+        <div style="float:left;" id="grupo"></div>
+      </div>
+      <br>
+      <div>
+        <div style="float:left;">Autores:</div>
+        <div id="autores"></div>
+      </div>
+
+    </p>
+    <hr>
+    <p>
+      <div>
+        <div>Último Commit:</div>
+        <div id="ucommit"></div>
+      </div>
+      <div>
+        <div>Última tag:</div>
+        <div id="utag"></div>
+        <div id="utagc"></div>
+      </div>
+    </p>
+  </div>
+
+
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  </script>
+
+
+
+  </hr>
+
+
+
+
+  </hr>
+  <button type="button" onmouseover="zoomout()" id="zmenos">-</button>
+  <button type="button" onmouseover="zoomout()" id="zmenos">-</button>
+  <button type="button" onmouseover="zoomout()" id="zmenos">-</button>
+  <button type="button" onclick="nozoom()">====</button>
+  <button type="button" onmouseover="zoomin()" id="zmais">+</button>
+  <button type="button" onmouseover="zoomin()" id="zmais">+</button>
+  <button type="button" onmouseover="zoomin()" id="zmais">+</button>
+  <br>
+  <img src="diagrama-trabalho.png" id="sky" width="400">
+
+
+  <h2> Tarefas </h2>
+  <table id="1"> </table>
+  </p>
+
+  <h2> Artefatos </h2>
+  <table id="2"> </table>
+
+  <h2> Papeis </h2>
+  <table id="3"> </table>
+
+  <script>
+
+    function createTable_file(vetor, elementID) {
+      var array = vetor;
+      var content = "";
+      var cabec = true;
+      array.forEach(function (row) {
+        if (cabec) { content += "<thead>"; }
+        content += "<tr>";
+        row.forEach(function (cell) {
+          content += "<td>" + cell + "</td>";
+        });
+        content += "</tr>";
+        if (cabec) {
+          content += "</thead>";
+          cabec = false;
+        }
+      });
+      document.getElementById(elementID).innerHTML = content;
+    }
+
+
+    function parseResult(result) {
+      var resultArray = [];
+      result.split("\n").forEach(function (row) {
+        var rowArray = [];
+        row.split(",").forEach(function (cell) {
+          rowArray.push(cell);
+        });
+        resultArray.push(rowArray);
+      });
+      return resultArray;
+    }
+
+
+    function readTextFile(file, elementID) {
+      var rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, true);
+      rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4) {
+          if (rawFile.status === 200 || rawFile.status == 0) {
+            var allText = rawFile.responseText;
+            createTable_file(parseResult(allText), elementID);
+
+          }
+        }
+      }
+      rawFile.send(null);
+    }
+
+
+    function readTextFileDiv(file, elementID) {
+      var rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, true);
+      rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4) {
+          if (rawFile.status === 200 || rawFile.status == 0) {
+            var allText = rawFile.responseText;
+
+            document.getElementById(elementID).innerHTML = allText;
+          }
+        }
+      }
+      rawFile.send(null);
+    }
+
+    /*
+    readTextFile("https://raw.githubusercontent.com/alerario/teste/master/processo/tarefas.csv",1);
+    readTextFile("https://raw.githubusercontent.com/alerario/teste/master/processo/artefatos.csv",2);
+    readTextFile("https://raw.githubusercontent.com/alerario/teste/master/processo/artefatos.csv",3);
+    readTextFileDiv("https://raw.githubusercontent.com/alerario/teste/master/processo/grupo.txt","grupo");
+    readTextFileDiv("https://raw.githubusercontent.com/alerario/teste/master/processo/autores.txt","autores");
+    readTextFileDiv("https://raw.githubusercontent.com/alerario/teste/master/processo/autores.txt","descricao");
+    */
+    readTextFile(repositorio + "processo/tarefas.csv", 1);
+    readTextFile(repositorio + "processo/artefatos.csv", 2);
+    readTextFile(repositorio + "processo/papeis.csv", 3);
+    readTextFileDiv(repositorio + "processo/grupo.txt", "grupo");
+    readTextFileDiv(repositorio + "processo/autores.txt", "autores");
+    readTextFileDiv(repositorio + "processo/autores.txt", "descricao");
+
+
+
+    lerGitHubTag("ultimatag");
+    lerGitHubCommit("ultimocommit", 5);
+    lerGitHubTag("utag", "utagc");
+    lerGitHubCommit("ucommit", 0);
+  </script>
+
+
+
+
+</body>
+
+</html>

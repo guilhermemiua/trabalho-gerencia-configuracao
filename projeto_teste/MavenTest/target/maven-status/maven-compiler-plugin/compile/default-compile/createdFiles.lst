@@ -1,0 +1,4 @@
+br\mt\web\jsf\JsfCidade.class
+br\mt\data\entity\Cidades_.class
+br\mt\data\entity\Cidades.class
+br\mt\data\crud\CrudCidades.class
