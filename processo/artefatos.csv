@@ -1,8 +1,4 @@
 Artefato ID,Nome,Descrição ,URL
-1,Art1,kdjkl adflkjfda lkdaj adlkfj adlfkj dfalkf,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/index.html"> download </a>
-2,Art2,kadfnajf adfl aldkjadlf fal,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/Projeto.docx"> download </a>
-3,Art3,adljfalkfd alkdfj adlfk j,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/diagrama.png"> download </a>
-4,Art_teste,kadfnajf adfl aldkjadlf fal,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/Projeto.docx"> download </a>
-4,Art_teste,kadfnajf adfl aldkjadlf fal,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/Projeto.docx"> download </a>
-5,Art_teste,kadfnajf adfl aldkjadlf fal,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/Projeto.docx"> download </a>
-6,Art_teste,kadfnajf adfl aldkjadlf fal,<a href="https://raw.githubusercontent.com/alerario/teste/master/processo/Projeto.docx"> download </a>
+1,Documento de requisitos,Um documento básico de requisitos somente para que a informação não seja perdidaf,<a href="https://raw.githubusercontent.com/guilhermemiua/trabalho-gerencia-configuracao/master/processo/Documento_de_Requisitos.odt"> download </a>
+2,Protótipo,Protótipo para que sejam validados os requisitos funcionais com o cliente,<a href="https://raw.githubusercontent.com/guilhermemiua/trabalho-gerencia-configuracao/master/processo/prototipo.png"> download </a>
+4,Projeto,Todo o código do projeto,
