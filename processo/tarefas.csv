@@ -1,7 +1,8 @@
 Tarefa,Entrada,Entrada opt,Saída obrigatoria,Saida opcional,Papel, guidance
-1,art1,,art2,artx,p1,documento
-2,art2,,art3,artx,p2,documento
-3,art3,,art4,artx,p3,documento
-3,art3,,art4,artx,p3,documento
-3,art3,,art4,artx,p3,documento
-3,art3,,art4,artx,p3,documento
+1,Elicitação de requisitos,,,,Gerente de Produto,
+2,Documentar Projeto,,Documento de Requisitos,,Gerente de Produto,
+3,Prototipagem,,Protótipo,,Gerente de Produto,
+4,Implementar sistema,,Sistema,,Desenvolvedor,
+5,Realizar testes,,,,Desenvolvedor,
+6,Publicar o sistema,,,,Desenvolvedor,
+7,Manutenir o sistema,,,,Desenvolvedor,
